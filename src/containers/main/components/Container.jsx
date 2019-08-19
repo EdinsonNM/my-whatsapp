@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {Tabs, Tab, AppBar} from '@material-ui/core';
-import Contacts from './Contacts';
-import States from './States';
-import Calls from './Calls';
-import {Switch, Route, Link} from 'react-router-dom';
-export default function Container() {
+import {Link} from 'react-router-dom';
+export default function Container({children}) {
     const [tab, setTab] = useState(0);
     const handleChangeTab = (event, newValue) => {
         setTab(newValue);
@@ -26,12 +23,7 @@ export default function Container() {
                     />
                 </Tabs>
             </AppBar>
-            <Switch>
-                <Route exact path="/main" component={Contacts} />
-                <Route path="/main/contactos" component={Contacts} />
-                <Route path="/main/estados" component={States} />
-                <Route path="/main/llamadas" component={Calls} />
-            </Switch>
+            {children}
         </div>
     );
 }
