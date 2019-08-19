@@ -1,33 +1,54 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {TextField, Button} from '@material-ui/core';
-
+import * as yup from 'yup';
+import useForm from 'react-hook-form';
+const schema = yup.object().shape({
+    username: yup
+        .string()
+        .email('Formarto de email es incorrecto')
+        .required('Email es requerido'),
+    password: yup.string().required()
+});
 function LoginForm() {
-    const [form, setForm] = useState({});
-    const handleChange = e => {
-        setForm({...form, [e.target.name]: e.target.value});
+    const {register, handleSubmit, errors} = useForm({
+        validationSchema: schema
+    });
+    const onSubmit = values => {
+        alert(JSON.stringify(values));
     };
-    useEffect(() => {
-        console.log(form);
-    }, [form]);
+
     return (
-        <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
                 name="username"
                 label="Usuario"
                 fullWidth
-                onChange={handleChange}
+                inputProps={{
+                    ref: register
+                }}
+                error={!!errors.username}
             />
+            <div style={{color: 'red'}}>
+                {errors.username && errors.username.message}
+            </div>
+            <br />
             <TextField
+                type="passwors"
                 name="password"
-                label="contraseña"
+                label="Contraseña"
                 fullWidth
-                onChange={handleChange}
+                inputProps={{
+                    ref: register
+                }}
             />
+            <div style={{color: 'red'}}>
+                {errors.password && errors.password.message}
+            </div>
             <div style={{margin: 10}} />
-            <Button color="primary" variant="contained" fullWidth>
+            <Button type="submit" color="primary" variant="contained" fullWidth>
                 Entrar
             </Button>
-        </div>
+        </form>
     );
 }
 
