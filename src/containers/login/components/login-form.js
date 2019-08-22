@@ -33,7 +33,7 @@ function LoginForm() {
             </div>
             <br />
             <TextField
-                type="passwors"
+                type="password"
                 name="password"
                 label="Contraseña"
                 fullWidth
