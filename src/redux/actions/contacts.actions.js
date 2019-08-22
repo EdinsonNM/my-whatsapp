@@ -1,4 +1,4 @@
-import {createActions} from 'react-redux';
+import {createActions} from 'redux-actions';
 export const LOAD_CONTACTS = 'LOAD_CONTACTS';
 export const LOAD_CONTACTS_DONE = 'LOAD_CONTACTS_DONE';
 
