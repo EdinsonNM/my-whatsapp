@@ -7,16 +7,16 @@ export default class UserApi {
         return api.logout();
     }
     static getAll() {
-        return api.get('/users');
+        return api.get('users', {});
     }
     static get(id) {
-        return api.get(`/users/${id}`);
+        return api.get(`users/${id}`, {});
     }
     static getAllActiveUsers() {
-        return api.get('/active-users');
+        return api.get('active-users', {});
     }
-    static connectUser({id}) {
+    static connectUser(id) {
         const loginAt = new Date();
-        return api.post('/active-users', {id, loginAt}, true);
+        return api.post('active-users', {id, loginAt});
     }
 }
