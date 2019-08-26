@@ -6,7 +6,7 @@ export const LOGOUT_DONE = 'LOGOUT_DONE';
 
 const actionsCreator = createActions(
     {
-        LOGIN: (username, password) => ({username, password})
+        LOGIN: (email, password) => ({email, password})
     },
     LOGIN_DONE,
     LOGOUT,

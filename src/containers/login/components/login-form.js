@@ -3,25 +3,25 @@ import {TextField, Button} from '@material-ui/core';
 import * as yup from 'yup';
 import useForm from 'react-hook-form';
 const schema = yup.object().shape({
-    username: yup
+    email: yup
         .string()
         .email('Formarto de email es incorrecto')
         .required('Email es requerido'),
     password: yup.string().required()
 });
-function LoginForm() {
+function LoginForm({handleLogin}) {
     const {register, handleSubmit, errors} = useForm({
         validationSchema: schema
     });
     const onSubmit = values => {
-        alert(JSON.stringify(values));
+        handleLogin(values);
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
-                name="username"
-                label="Usuario"
+                name="email"
+                label="Email"
                 fullWidth
                 inputProps={{
                     ref: register

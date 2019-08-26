@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/functions';
 
-import config from '../../config/firebase';
+import config from '../config/firebase';
 import {from} from 'rxjs';
 //filter = {property1:{ lte: value}, property2: value, property3:{gte: value}...}
 const operators = {
