@@ -1,25 +1,16 @@
-import React, {useContext} from 'react';
-import {
-    ListItem,
-    ListItemText,
-    ListItemAvatar,
-    Avatar
-} from '@material-ui/core';
-import {NotificationContext} from '../../../../context/notification.context';
+import React from 'react';
+import {Avatar, ListItemText} from '@material-ui/core';
+import {ListItem, ListItemAvatar} from '@material-ui/core';
 
-export default function Contact({firstname, lastname, url}) {
-    const {handleOpen} = useContext(NotificationContext);
-    const handleOpenNotification = () => {
-        handleOpen(`${firstname} ${lastname}`);
-    };
+export default function Contact({url = '', email = '', firstname='', lastname=''}) {
     return (
-        <ListItem button onClick={handleOpenNotification}>
+        <ListItem button>
             <ListItemAvatar>
                 <Avatar alt={`${firstname} ${lastname}`} src={url} />
             </ListItemAvatar>
             <ListItemText
-                primary={`${firstname} ${lastname}`}
-                secondary="cualquier cosa..."
+                primary={email}
+                secondary={`${firstname} ${lastname}`}
             />
         </ListItem>
     );

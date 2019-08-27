@@ -1,5 +1,5 @@
 import {ofType} from 'redux-observable';
-import {LOGIN, LOGOUT, loginDone} from '../actions/login.actions';
+import {LOGIN, LOGOUT, loginDone, LOGIN_DONE} from '../actions/login.actions';
 import {switchMap, map, catchError, mergeMap} from 'rxjs/operators';
 import {empty, merge, of} from 'rxjs';
 import UserApi from '../../api/user';
@@ -31,6 +31,22 @@ const logoutEpic = action$ =>
             return empty();
         })
     );
+
+const loginDoneEpic = action$ =>
+    action$.pipe(
+        ofType(LOGIN_DONE),
+        switchMap(({payload}) => {
+            if (payload.uid) {
+                console.log('redirect successful');
+                //history.push('/main');
+                return empty();
+            }
+        })
+    );
 export default function LoginEpics(action$) {
-    return merge(loginEpic(action$), logoutEpic(action$));
+    return merge(
+        loginEpic(action$),
+        logoutEpic(action$),
+        loginDoneEpic(action$)
+    );
 }
