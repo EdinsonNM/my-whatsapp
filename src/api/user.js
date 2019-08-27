@@ -17,6 +17,6 @@ export default class UserApi {
     }
     static connectUser(id) {
         const loginAt = new Date();
-        return api.post('active-users', {id, loginAt});
+        return api.post(`active-users/${id}`, {loginAt}, true);
     }
 }
