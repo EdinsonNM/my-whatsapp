@@ -1,6 +1,10 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {loadContacts} from '../../../redux/actions/contacts.actions';
+import {
+    loadContacts,
+    connectContacts,
+    disconnectContacts
+} from '../../../redux/actions/contacts.actions';
 import {
     List,
     AppBar,
@@ -22,7 +26,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Contacts({open = false, handleClose}) {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(loadContacts());
+        dispatch(connectContacts());
+        return () => {
+            dispatch(disconnectContacts());
+        };
     }, [dispatch]);
     const {contacts, inProgress} = useSelector(state => state.ContactsReducer);
     return (

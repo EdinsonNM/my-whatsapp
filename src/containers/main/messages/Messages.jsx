@@ -29,7 +29,12 @@ export default function Messages() {
                     <MessageIcon />
                 </Fab>
             </div>
-            <Contacts open={openContacts} handleClose={handleToggleContacts} />
+            {openContacts && (
+                <Contacts
+                    open={openContacts}
+                    handleClose={handleToggleContacts}
+                />
+            )}
         </div>
     );
 }
